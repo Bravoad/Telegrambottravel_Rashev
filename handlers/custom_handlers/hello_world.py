@@ -51,19 +51,3 @@ def get_city(message: Message) -> None:
             data['city'] = message.text
     else:
         bot.send_message(message.from_user.id, "Некорректный ввод, введите только буквы")
-
-
-
-@bot.message_handler(commands=['lowprice'])
-def lowprice(message: Message):
-    bot.reply_to(message, "Команда в разработке")
-
-
-@bot.message_handler(commands=['highprice'])
-def highprice(message: Message):
-    bot.reply_to(message, "Команда в разработке")
-
-
-@bot.message_handler(commands=['history'])
-def history(message: Message):
-    bot.reply_to(message, "Команда в разработке")

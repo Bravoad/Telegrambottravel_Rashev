@@ -1,20 +1,66 @@
+"""
+Файл содержащий базовые конфигурации бота и API (Токен, API-ключ, заголовок, параметры и url-адреса)
+"""
+
 import os
 from dotenv import load_dotenv, find_dotenv
 
 if not find_dotenv():
-    exit('Переменные окружения не загружены т.к отсутствует файл .env')
+    exit('Файл .env отсутствует')
 else:
     load_dotenv()
 
-BOT_TOKEN = os.getenv('BOT_TOKEN')
-RAPID_API_KEY = os.getenv('RAPID_API_KEY')
+TOKEN = os.environ.get('BOT_TOKEN')
+API_KEY = os.environ.get('RAPID_API_KEY')
+
+
+HEADERS = {
+    'X-RapidAPI-Host': 'hotels4.p.rapidapi.com',
+    'X-RapidAPI-Key': API_KEY
+}
+
+
+URL_SEARCH = 'https://hotels4.p.rapidapi.com/locations/v2/search'
+URL_PROPERTY_LIST = 'https://hotels4.p.rapidapi.com/properties/list'
+URL_PHOTO = 'https://hotels4.p.rapidapi.com/properties/get-hotel-photos'
+URL_HOTEL = 'https://www.hotels.com/ho{}'
 DEFAULT_COMMANDS = (
     ('start', "Запустить бота"),
     ('help', "Вывести справку"),
-    ('hello_world', "Приветствие"),
     ('lowprice', "Топ дешёвых отелей в городе"),
     ('highprice', "Топ дорогих отелей в городе"),
     ('bestdeal', "Топ выгодные отелей в радиусе"),
     ('history', "История запросов"),
-    ('bye', "Прощание"),
 )
+
+
+QUERY_SEARCH = {
+    'query': 'new_york',
+    'locale': 'en_US',
+    'currency': 'USD'
+}
+QUERY_PROPERTY_LIST = {
+    'destinationId': '1506246',
+    'pageNumber': '1',
+    'pageSize': '25',
+    'checkIn': '2020-01-08',
+    'checkOut': '2020-01-15',
+    'adults1': '1',
+    'sortOrder': 'PRICE',
+    'locale': 'en_US',
+    'currency': 'USD'
+}
+QUERY_BESTDEAL = {
+    'destinationId': '1506246',
+    'pageNumber': '1',
+    'pageSize': '25',
+    'checkIn': '2020-01-08',
+    'checkOut': '2020-01-15',
+    'adults1': '1',
+    'priceMin': '50',
+    'priceMax': '300',
+    'sortOrder': 'DISTANCE_FROM_LANDMARK',
+    'locale': 'en_US',
+    'currency': 'EUR'
+}
+QUERY_PHOTO = {'id': '1178275040'}

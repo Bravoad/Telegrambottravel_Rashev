@@ -1,9 +1,13 @@
-from loader import bot
-from telebot.custom_filters import StateFilter
+"""
+Файл для запуска бота и создания БД, в случае её отсутствия
+"""
+
 import handlers
-from utils.set_bot_commands import set_default_commands
+from database.database import DataBaseModel
+from loader import bot, logger
+
 
 if __name__ == '__main__':
-    bot.add_custom_filter(StateFilter(bot))
-    set_default_commands(bot)
+    DataBaseModel._init_user_tables()
     bot.infinity_polling()
+    logger.info('bot start working')

@@ -1,4 +1,4 @@
-from telebot.types import Message,ReplyKeyboardMarkup
+from telebot.types import Message, ReplyKeyboardMarkup
 from states.info_state import InfoState
 from loader import bot
 
